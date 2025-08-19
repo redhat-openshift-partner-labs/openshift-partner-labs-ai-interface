@@ -51,6 +51,67 @@ pnpm dev
 
 4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## Docker Support
+
+This project includes Docker support for easy deployment and consistent development environments.
+
+### Running with Docker
+
+#### Quick Start
+
+```bash
+# Build the Docker image
+podman build -t agent-ui .
+
+# Run the container
+podman run -p 3000:3000 agent-ui
+```
+
+#### Development with Docker
+
+```bash
+# Build development image
+podman build -t agent-ui:dev .
+
+# Run with volume mounting for development
+podman run -p 3000:3000 -v $(pwd):/app -v /app/node_modules agent-ui:dev
+```
+
+#### Docker Compose (Recommended)
+
+Create a `podman-compose.yml` file:
+
+```yaml
+version: '3.8'
+services:
+  agent-ui:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+```
+
+Then run:
+```bash
+podman-compose up
+```
+
+### Docker Configuration
+
+- **Base Image**: Node.js 22 Alpine Linux
+- **Multi-stage Build**: Optimized for production deployment
+- **Standalone Output**: Uses Next.js standalone mode for minimal image size
+- **Security**: Runs as non-root user with proper permissions
+- **Port**: Exposes port 3000
+
+### Environment Variables
+
+- `NODE_ENV`: Set to `production` for production builds
+- `NEXT_TELEMETRY_DISABLED`: Set to `1` to disable telemetry
+- `PORT`: Application port (default: 3000)
+- `HOSTNAME`: Bind hostname (default: 0.0.0.0)
+
 ## Connecting to an Agent Backend
 
 By default Agent UI connects to `http://localhost:7777`. You can easily change this by hovering over the endpoint URL and clicking the edit option.
