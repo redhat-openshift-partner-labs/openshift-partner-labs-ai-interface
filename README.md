@@ -2,7 +2,7 @@
 
 A modern chat interface for AgentOS built with Next.js, Tailwind CSS, and TypeScript. This template provides a ready-to-use UI for connecting to and interacting with your AgentOS instances through the Agno platform.
 
-<img src="https://agno-public.s3.us-east-1.amazonaws.com/assets/agent_ui_banner.svg" alt="agent-ui" style="border-radius: 10px; width: 100%; max-width: 800px;" />
+<img src="https://github.com/user-attachments/assets/7765fae5-a813-46cb-993b-904af9bc1672" alt="agent-ui" style="border-radius: 10px; width: 100%; max-width: 800px;" />
 
 ## Features
 
@@ -17,8 +17,8 @@ A modern chat interface for AgentOS built with Next.js, Tailwind CSS, and TypeSc
 
 ## Version Support
 
-- **Main Branch**: Supports Agno v2.x (recommended)
-- **v1 Branch**: Supports Agno v1.x for legacy compatibility
+- **Main Branch**: Supports AgentOS v2.0 (recommended)
+- **v1.1 Branch**: Supports AgentOS v1.x for legacy compatibility
 
 ## Getting Started
 
