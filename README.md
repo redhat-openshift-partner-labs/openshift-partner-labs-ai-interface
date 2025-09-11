@@ -1,11 +1,12 @@
 # Agent UI
 
-A modern chat interface for AI agents built with Next.js, Tailwind CSS, and TypeScript. This template provides a ready-to-use UI for interacting with Agno agents.
+A modern chat interface for AgentOS built with Next.js, Tailwind CSS, and TypeScript. This template provides a ready-to-use UI for connecting to and interacting with your AgentOS instances through the Agno platform.
 
 <img src="https://github.com/user-attachments/assets/7765fae5-a813-46cb-993b-904af9bc1672" alt="agent-ui" style="border-radius: 10px; width: 100%; max-width: 800px;" />
 
 ## Features
 
+- 🔗 **AgentOS Integration**: Seamlessly connect to local and live AgentOS instances
 - 💬 **Modern Chat Interface**: Clean design with real-time streaming support
 - 🧩 **Tool Calls Support**: Visualizes agent tool calls and their results
 - 🧠 **Reasoning Steps**: Displays agent reasoning process (when available)
@@ -14,11 +15,18 @@ A modern chat interface for AI agents built with Next.js, Tailwind CSS, and Type
 - 🎨 **Customizable UI**: Built with Tailwind CSS for easy styling
 - 🧰 **Built with Modern Stack**: Next.js, TypeScript, shadcn/ui, Framer Motion, and more
 
+## Version Support
+
+- **Main Branch**: Supports AgentOS v2.0 (recommended)
+- **v1.1 Branch**: Supports AgentOS v1.x for legacy compatibility
+
 ## Getting Started
 
 ### Prerequisites
 
-Before setting up Agent UI, you may want to have an Agno Playground running. If you haven't set up the Agno Playground yet, follow the [official guide](https://agno.link/agent-ui#connect-to-local-agents) to run the Playground locally.
+Before setting up Agent UI, you need a running AgentOS instance. If you haven't created one yet, check out our [Creating Your First OS](/agent-os/creating-your-first-os) guide.
+
+> **Note**: Agent UI connects to AgentOS instances through the Agno platform. Make sure your AgentOS is running before attempting to connect.
 
 ### Installation
 
@@ -51,91 +59,37 @@ pnpm dev
 
 4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Container Support
+## Connecting to Your AgentOS
 
-This project includes container support for easy deployment and consistent development environments.
+Agent UI connects directly to your AgentOS instance, allowing you to interact with your agents through a modern chat interface.
 
-### Published Container Images
+> **Prerequisites**: You need a running AgentOS instance before you can connect Agent UI to it. If you haven't created one yet, check out our [Creating Your First OS](https://docs.agno.com/agent-os/creating-your-first-os) guide.
 
-Pre-built container images are automatically built and published to Quay.io:
+## Step-by-Step Connection Process
 
-- **Latest**: `quay.io/rhopl/openshift-partner-labs-ai-interface:latest`
-- **Branch-specific**: `quay.io/rhopl/openshift-partner-labs-ai-interface:main`
-- **Commit-tagged**: `quay.io/rhopl/openshift-partner-labs-ai-interface:main-abc1234`
+### 1. Configure the Endpoint
 
-#### Using Published Images
+By default, Agent UI connects to `http://localhost:7777`. You can easily change this by:
 
-```bash
-# Pull and run the latest version
-podman pull quay.io/rhopl/openshift-partner-labs-ai-interface:latest
-podman run -p 3000:3000 quay.io/rhopl/openshift-partner-labs-ai-interface:latest
+1. Hovering over the endpoint URL in the left sidebar
+2. Clicking the edit option to modify the connection settings
 
-# Or run directly
-podman run -p 3000:3000 quay.io/rhopl/openshift-partner-labs-ai-interface:latest
-```
+### 2. Choose Your Environment
 
-### Running with Containers
+- **Local Development**: Use `http://localhost:7777` (default) or your custom local port
+- **Production**: Enter your production AgentOS HTTPS URL
 
-#### Quick Start
+> **Warning**: Make sure your AgentOS is actually running on the specified endpoint before attempting to connect.
 
-```bash
-# Build the container image
-podman build -t agent-ui .
+### 3. Test the Connection
 
-# Run the container
-podman run -p 3000:3000 agent-ui
-```
+Once you've configured the endpoint:
 
-#### Development with Containers
+1. The Agent UI will automatically attempt to connect to your AgentOS
+2. If successful, you'll see your agents available in the chat interface
+3. If there are connection issues, check that your AgentOS is running and accessible. Check out the troubleshooting guide [here](https://docs.agno.com/faq/agentos-connection)
 
-```bash
-# Build development image
-podman build -t agent-ui:dev .
 
-# Run with volume mounting for development
-podman run -p 3000:3000 -v $(pwd):/app -v /app/node_modules agent-ui:dev
-```
-
-#### Podman Compose (Recommended)
-
-Create a `podman-compose.yml` file:
-
-```yaml
-version: '3.8'
-services:
-  agent-ui:
-    build: .
-    ports:
-      - "3000:3000"
-    environment:
-      - NODE_ENV=production
-```
-
-Then run:
-```bash
-podman-compose up
-```
-
-### Container Configuration
-
-- **Base Image**: Node.js 22 Alpine Linux
-- **Multi-stage Build**: Optimized for production deployment
-- **Standalone Output**: Uses Next.js standalone mode for minimal image size
-- **Security**: Runs as non-root user with proper permissions
-- **Port**: Exposes port 3000
-
-### Environment Variables
-
-- `NODE_ENV`: Set to `production` for production builds
-- `NEXT_TELEMETRY_DISABLED`: Set to `1` to disable telemetry
-- `PORT`: Application port (default: 3000)
-- `HOSTNAME`: Bind hostname (default: 0.0.0.0)
-
-## Connecting to an Agent Backend
-
-By default Agent UI connects to `http://localhost:7777`. You can easily change this by hovering over the endpoint URL and clicking the edit option.
-
-The default endpoint works with the standard Agno Playground setup described in the [official documentation](https://agno.link/agent-ui#connect-to-local-agents).
 
 ## Contributing
 
