@@ -1,0 +1,17 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: openshift-partner-labs-ai-interface
+  labels:
+    app: openshift-partner-labs-ai-interface
+spec:
+  to:
+    kind: Service
+    name: openshift-partner-labs-ai-interface
+    weight: 100
+  port:
+    targetPort: http
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+  wildcardPolicy: None

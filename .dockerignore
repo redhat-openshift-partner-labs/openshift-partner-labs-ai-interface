@@ -1,0 +1,15 @@
+.claude
+.github
+.idea
+.next
+.serena
+.vscode
+node_modules
+.dockerignore
+.gitignore
+CLAUDE.md
+CONTRIBUTING.md
+Dockerfile
+LICENSE
+README.md
+tsconfig.tsbuildinfo
